@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clickbaiter
+  namespace: production
+  labels:
+    app: clickbaiter
+    commit: {{ .DroneCommit }}
+spec:
+  selector:
+    matchLabels:
+      app: clickbaiter
+  replicas: 2
+  revisionHistoryLimit: 3
+  strategy:
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: clickbaiter
+    spec:
+      containers:
+        - name: clickbaiter
+          image: quay.io/cbrgm/clickbaiter
+          imagePullPolicy: Always
+          env:
+            - name: HTTP_ADDR
+              value: ':8080'
+            - name: COMMIT_HASH
+              value: {{ .DroneCommit }}
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: clickbaiter
+  namespace: production
+  labels:
+    app: clickbaiter
+spec:
+  type: ClusterIP
+  selector:
+    app: clickbaiter
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: clickbaiter-ingress
+  namespace: production
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  tls:
+  - hosts:
+    - clickbait.cbrgm.net
+    secretName: clickbaiter-tls
+  rules:
+  - host: clickbait.cbrgm.net
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: clickbaiter
+            port:
+              number: 8080

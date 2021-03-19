@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/alexflint/go-arg"
 	"github.com/cbrgm/clickbaiter/clickbaiter"
 	"github.com/go-chi/chi"
 	"log"
@@ -12,7 +13,7 @@ import (
 )
 
 type Config struct {
-	HttpAddr  string `arg:"env:HTTP_ADDR"`
+	HttpAddr string `arg:"env:HTTP_ADDR"`
 }
 
 type Response struct {
@@ -22,6 +23,12 @@ type Response struct {
 func main() {
 	rand.Seed(time.Now().Unix())
 
+	c := Config{
+		HttpAddr: ":8080",
+	}
+
+	arg.MustParse(&c)
+
 	cbg := clickbaiter.NewGenerator()
 
 	r := chi.NewRouter()
@@ -29,7 +36,7 @@ func main() {
 	r.Handle("/web/*", http.StripPrefix("/web", http.FileServer(http.Dir("./web"))))
 	r.Post("/generate", HandleFunc(generate(cbg)))
 
-	if err := http.ListenAndServe(":8080", r); err != nil {
+	if err := http.ListenAndServe(c.HttpAddr, r); err != nil {
 		log.Fatal(err)
 	}
 }

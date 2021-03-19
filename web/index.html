@@ -29,9 +29,14 @@
         }
 
         .register {
-            margin-top: 10rem;
+            margin-top: 4rem;
             background: white;
-            border-radius: 10px;
+            border-radius: 15px;
+        }
+
+        .footer {
+            padding: 1rem;
+            background-color: transparent;
         }
 
         .left,
@@ -94,23 +99,21 @@
             <div class="columns">
                 <div class="column left">
                     <h1 id="cb-headline" class="title is-2"></h1>
-                    <button class="button is-primary is-medium" onclick="generate()">Generate 💸</button>
-                    <button id="cb-copy" class="button is-small" onclick="copy()">Copy</button>
-                    <a id="cb-twitter" href="https://twitter.com/intent/tweet?text=Hello%20world"><button class="button is-small">Tweet</button></a>
-                    <h2 class="subtitle colored is-4">What is this actually about?</h2>
-                    <p>This page generates clickbait headlines on various tech topics. Your colleagues ignore your issues or pull requests? No problem! Send them a clickbait headline with a link to your issue and draw attention to yourself! 💰🤷‍♀️</p>
+                    <div class="buttons">
+                        <button class="button is-primary is-medium" onclick="generate()">Generate</button>
+                        <button id="cb-copy" class="button is-small" onclick="copy()">Copy</button>
+                        <a id="cb-twitter" href="https://twitter.com/intent/tweet?text=Hello%20world"><button class="button is-small">Tweet</button></a>
+                    </div>
+                    <h2 class="subtitle colored is-4">What is this actually about? 😗</h2>
+                    <p>This page generates clickbait headlines on various tech topics. Your colleagues ignore your issues or pull requests? No problem! Send them a clickbait headline with a link to your issue and draw attention to yourself! 💸🤷</p>
 
                 </div>
             </div>
         </div>
         <div class="column is-8 is-offset-2">
-            <nav class="level">
-                <div class="level-left">
-                </div>
-                <div class="level-right" style="color: var(--textLight)">
+                <div class="footer has-text-centered" style="color: var(--textLight)">
                     <small><p>This page is built with <a href="https://golang.org/">Go</a> and the source is on <a href="https://github.com/cbrgm/clickbaiter/">GitHub</a> too. Built by <a href="https://twitter.com/chrisbargmann">cbrgm</a>.</p></small>
                 </div>
-            </nav>
         </div>
     </div>
 </section>
