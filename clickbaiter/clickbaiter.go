@@ -197,6 +197,8 @@ func NewClickbaiter() Clickbaiter {
 			"NoOps",
 			"Hybrid Cloud",
 			"Community Cloud",
+			"Spotify Model",
+			"Kanban",
 		},
 		reaction: []string{
 			"Blow Your Mind",
@@ -212,6 +214,14 @@ func NewClickbaiter() Clickbaiter {
 			"Make You Quit your Job",
 			"Make You Change Your Workflow",
 			"Get You Mad",
+			"Fascinate You",
+			"Make your Boss Love You",
+			"Make Doctors Hate You",
+			"Make Researchers Hate You",
+			"Make You A Startup Founder",
+			"Double Your Monthly Income",
+			"Double Your Daily Income",
+			"Double Your Annual Income",
 		},
 		number: []string{
 			"Two",
@@ -244,7 +254,7 @@ func NewClickbaiter() Clickbaiter {
 			"Urgent",
 			"Hey you",
 			"It's time to talk about it",
-			"Listen:",
+			"Listen",
 		},
 	}
 }
@@ -287,6 +297,10 @@ func (cb *Clickbaiter) Reaction() string {
 
 func (cb *Clickbaiter) Number() string {
 	return randomChoice(cb.number)
+}
+
+func (cb *Clickbaiter) Attention() string {
+	return randomChoice(cb.attention)
 }
 
 func randomChoice(s []string) string {

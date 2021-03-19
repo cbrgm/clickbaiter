@@ -32,7 +32,7 @@ func NewGenerator() ClickbaitGenerator {
 			return fmt.Sprintf("%ss hate This: %s %s about %s that will %s", gen.NounPersonType(), gen.Number(), gen.GenericWord(), gen.Item(), gen.Reaction())
 		},
 		func() string {
-			return fmt.Sprintf("This %ss Wanted to Make a Point About %s and Succeeded!", gen.NounPersonType(), gen.Item())
+			return fmt.Sprintf("This %s Wanted to Make a Point About %s and Succeeded!", gen.NounPersonType(), gen.Item())
 		},
 		func() string {
 			return fmt.Sprintf("%ss are mad! %ss are %s Using %s", gen.NounPersonType(), gen.NounPersonType(), gen.BadPredicate(), gen.Item())
@@ -41,11 +41,15 @@ func NewGenerator() ClickbaitGenerator {
 			return fmt.Sprintf("%ss Explain Why We're Seeing a Dramatic Increase in %s Software", gen.NounPersonType(), gen.VerbIng())
 		},
 		func() string {
-			return fmt.Sprintf("%s Thanks %ss For %s Great Things! It will %s", gen.NounPerson(), gen.NounPersonType(), gen.VerbIng(), gen.Reaction())
+			return fmt.Sprintf("%s Thanks %ss For %s Great %s! It will %s", gen.NounPerson(), gen.NounPersonType(), gen.VerbIng(), gen.GenericWord(), gen.Reaction())
 		},
 		func() string {
 			return fmt.Sprintf("Why %s Becomes Important! What %s is Talking About with %ss Will %s", gen.Item(), gen.NounPerson(), gen.NounPersonType(), gen.Reaction())
 		},
+		func() string {
+			return fmt.Sprintf("%s: %ss are %s %s. What happened next will %s", gen.Attention(), gen.NounPersonType(), gen.VerbIng(), gen.Item(), gen.Reaction())
+		},
+
 
 	})
 	return gen
@@ -105,4 +109,9 @@ func (cbg *ClickbaitGenerator) Item() string {
 func (cbg *ClickbaitGenerator) Number() string {
 	return cbg.words.Number()
 }
+
+func (cbg *ClickbaitGenerator) Attention() string {
+	return cbg.words.Attention()
+}
+
 

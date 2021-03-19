@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="chrisbargmann">
+    <title>Clickbaiter - Dynamically generated tech clickbait headlines delivered directly to your browser</title>
+    <meta name="description" content="Dynamically generated tech clickbait headlines delivered directly to your browser">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    <style>
+        :root {
+            --brandColor: hsl(166, 67%, 51%);
+            --background: rgb(247, 247, 247);
+            --textDark: hsla(0, 0%, 0%, 0.66);
+            --textLight: hsla(0, 0%, 0%, 0.33);
+        }
+
+        body {
+            background: var(--background);
+            height: 100vh;
+            color: var(--textDark);
+        }
+
+        .field:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+
+        .register {
+            margin-top: 10rem;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .left,
+        .right {
+            padding: 4.5rem;
+        }
+
+        .left {
+            border-right: 5px solid var(--background);
+        }
+
+        .left .title {
+            font-weight: 800;
+            letter-spacing: -2px;
+        }
+
+        .left .colored {
+            color: var(--brandColor);
+            font-weight: 500;
+            margin-top: 1rem !important;
+            letter-spacing: -1px;
+        }
+
+        .left p {
+            color: var(--textLight);
+            font-size: 1.15rem;
+        }
+
+        .right .title {
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .right .description {
+            margin-top: 1rem;
+            margin-bottom: 1rem !important;
+            color: var(--textLight);
+            font-size: 1.15rem;
+        }
+
+        .right small {
+            color: var(--textLight);
+        }
+
+        input {
+            font-size: 1rem;
+        }
+
+        input:focus {
+            border-color: var(--brandColor) !important;
+            box-shadow: 0 0 0 1px var(--brandColor) !important;
+        }
+    </style>
+</head>
+
+<body onload="javascript:generate()">
+<section class="container">
+    <div class="columns is-multiline">
+        <div class="column is-8 is-offset-2 register">
+            <div class="columns">
+                <div class="column left">
+                    <h1 id="cb-headline" class="title is-2"></h1>
+                    <button class="button is-primary is-medium" onclick="generate()">Generate 💸</button>
+                    <button id="cb-copy" class="button is-small" onclick="copy()">Copy</button>
+                    <a id="cb-twitter" href="https://twitter.com/intent/tweet?text=Hello%20world"><button class="button is-small">Tweet</button></a>
+                    <h2 class="subtitle colored is-4">What is this actually about?</h2>
+                    <p>This page generates clickbait headlines on various tech topics. Your colleagues ignore your issues or pull requests? No problem! Send them a clickbait headline with a link to your issue and draw attention to yourself! 💰🤷‍♀️</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="column is-8 is-offset-2">
+            <nav class="level">
+                <div class="level-left">
+                </div>
+                <div class="level-right" style="color: var(--textLight)">
+                    <small><p>This page is built with <a href="https://golang.org/">Go</a> and the source is on <a href="https://github.com/cbrgm/clickbaiter/">GitHub</a> too. Built by <a href="https://twitter.com/chrisbargmann">cbrgm</a>.</p></small>
+                </div>
+            </nav>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    async function generate() {
+        await fetch('/generate', {
+            method: 'POST',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((resp) => resp.json())
+            .then((data) => {
+                document.title = "Clickbaiter - " + data.headline
+                document.getElementById("cb-headline").innerHTML = data.headline
+                document.getElementById("cb-twitter").href = "https://twitter.com/intent/tweet?text=" + encodeURI(data.headline + " https://clickbait.cbrgm.net")
+                document.getElementById("cb-copy").innerHTML = "Copy"
+            })
+    }
+
+    function copy() {
+        const copyText = document.getElementById("cb-headline").innerHTML
+        navigator.clipboard.writeText(copyText);
+        document.getElementById("cb-copy").innerHTML = "Done!"
+    }
+</script>
+</body>
+</html>
