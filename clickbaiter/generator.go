@@ -23,34 +23,35 @@ func NewGenerator() ClickbaitGenerator {
 	}
 	gen.AddTemplates([]TemplateFunc{
 		func() string {
-			return fmt.Sprintf("This %s is %s Using %s", gen.NounPersonType(), gen.BadPredicate(), gen.Item())
+			return fmt.Sprintf("This %s Is %s Using %s", gen.NounPersonType(), gen.BadPredicate(), gen.Item())
 		},
 		func() string {
-			return fmt.Sprintf("What This %s %s %s will %s", gen.NounPersonType(), gen.VerbPast(), gen.Item(), gen.Reaction())
+			return fmt.Sprintf("What This %s %s %s Will %s", gen.NounPersonType(), gen.VerbPast(), gen.Item(), gen.Reaction())
 		},
 		func() string {
-			return fmt.Sprintf("%ss hate This: %s %s about %s that will %s", gen.NounPersonType(), gen.Number(), gen.GenericWord(), gen.Item(), gen.Reaction())
+			return fmt.Sprintf("%ss hate This: %s %s About %s That Will %s", gen.NounPersonType(), gen.Number(), gen.GenericWord(), gen.Item(), gen.Reaction())
 		},
 		func() string {
 			return fmt.Sprintf("This %s Wanted to Make a Point About %s and Succeeded!", gen.NounPersonType(), gen.Item())
 		},
 		func() string {
-			return fmt.Sprintf("%ss are mad! %ss are %s Using %s", gen.NounPersonType(), gen.NounPersonType(), gen.BadPredicate(), gen.Item())
+			return fmt.Sprintf("%ss Are Mad! %ss Are %s Using %s", gen.NounPersonType(), gen.NounPersonType(), gen.BadPredicate(), gen.Item())
 		},
 		func() string {
-			return fmt.Sprintf("%ss Explain Why We're Seeing a Dramatic Increase in %s Software", gen.NounPersonType(), gen.VerbIng())
+			return fmt.Sprintf("%ss Explain Why We're Seeing a Dramatic Increase In %s Software", gen.NounPersonType(), gen.VerbIng())
 		},
 		func() string {
-			return fmt.Sprintf("%s Thanks %ss For %s Great %s! It will %s", gen.NounPerson(), gen.NounPersonType(), gen.VerbIng(), gen.GenericWord(), gen.Reaction())
+			return fmt.Sprintf("%s Thanks %ss For %s Great %s! It Will %s", gen.NounPerson(), gen.NounPersonType(), gen.VerbIng(), gen.GenericWord(), gen.Reaction())
 		},
 		func() string {
-			return fmt.Sprintf("Why %s Becomes Important! What %s is Talking About with %ss Will %s", gen.Item(), gen.NounPerson(), gen.NounPersonType(), gen.Reaction())
+			return fmt.Sprintf("Why %s Becomes Important! What %s Is Talking About With %ss Will %s", gen.Item(), gen.NounPerson(), gen.NounPersonType(), gen.Reaction())
 		},
 		func() string {
-			return fmt.Sprintf("%s: %ss are %s %s. What happened next will %s", gen.Attention(), gen.NounPersonType(), gen.VerbIng(), gen.Item(), gen.Reaction())
+			return fmt.Sprintf("%s: %ss Are %s %s. What Happened Next Will %s", gen.Attention(), gen.NounPersonType(), gen.VerbIng(), gen.Item(), gen.Reaction())
 		},
-
-
+		func() string {
+			return fmt.Sprintf("%s: %s As A Service is On The Rise! Read On and It Will %s", gen.Attention(), gen.Item(), gen.Reaction())
+		},
 	})
 	return gen
 }
