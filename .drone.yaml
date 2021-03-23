@@ -1,0 +1,49 @@
+---
+kind: pipeline
+type: kubernetes
+name: build
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: build
+    pull: always
+    image: golang:1.16
+    commands:
+      - make binary
+    environment:
+      CGO_ENABLED: 0
+      GO111MODULE: on
+      GOPROXY: https://proxy.golang.org
+
+  - name: container
+    image: plugins/docker
+    settings:
+      dockerfile: ./Dockerfile
+      password:
+        from_secret: quay_password
+      registry: quay.io
+      repo: quay.io/cbrgm/clickbaiter
+      username:
+        from_secret: quay_username
+    when:
+      branch:
+        - master
+      event:
+        - push
+
+  - name: deploy
+    image: metalmatze/drone-kubectl
+    settings:
+      namespace: production
+      kubectl: 'apply'
+      templates: 'deploy.tmpl'
+      kubeconfig:
+        from_secret: kubeconfig
+    when:
+      branch:
+        - master
+      event:
+        - push
