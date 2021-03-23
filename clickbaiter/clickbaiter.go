@@ -215,6 +215,18 @@ func NewClickbaiter() Clickbaiter {
 			"Domain Driven Design",
 			"Bounded Contexts",
 			"Ubiquitous Language",
+			"Microservices",
+			"Monoliths",
+			"Server Client Model",
+			"Fat Clients",
+			"Thin Clients",
+			"Requirements Engineering",
+			"Twelve Factor Apps",
+			"Beyond Twelve Factor Apps",
+			"Cloud Native",
+			"Proxies",
+			"Reverse Proxies",
+
 		},
 		reaction: []string{
 			"Blow Your Mind",
