@@ -31,6 +31,7 @@ func NewClickbaiter() Clickbaiter {
 			"Trump",
 			"Bob Ross",
 			"MontanaBlack",
+			"Joe Biden",
 		},
 		nounPersonType: []string{
 			"Colleague",
@@ -55,7 +56,6 @@ func NewClickbaiter() Clickbaiter {
 			"Tech Influencer",
 			"Contributor",
 			"Recruiter",
-			"Agile Coach",
 			"Product Owner",
 			"Scrum Master",
 			"Operator",
@@ -65,6 +65,7 @@ func NewClickbaiter() Clickbaiter {
 			"Twitch Streamer",
 			"Android Developer",
 			"iOS Developer",
+			"Cloud Native",
 		},
 		goodPredicate: []string{
 			"Opening an Issue",
@@ -91,6 +92,8 @@ func NewClickbaiter() Clickbaiter {
 			"Deleting a Feature Branch",
 			"Copying from StackOverflow",
 			"Destroying Test Frameworks",
+			"Deleting User Accounts",
+			"Shattering Unix Permissions",
 		},
 		verbPast: []string{
 			"Wrote about",
@@ -199,6 +202,12 @@ func NewClickbaiter() Clickbaiter {
 			"Community Cloud",
 			"Spotify Model",
 			"Kanban",
+			"Software Engineering",
+			"Ansible",
+			"Puppet",
+			"Helm",
+			"Terraform",
+			"MacOS",
 		},
 		reaction: []string{
 			"Blow Your Mind",
@@ -255,6 +264,11 @@ func NewClickbaiter() Clickbaiter {
 			"Hey you",
 			"It's time to talk about it",
 			"Listen",
+			"Attention",
+			"Update",
+			"Finally",
+			"Everyone talks about it",
+			"Trending",
 		},
 	}
 }
