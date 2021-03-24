@@ -12,13 +12,13 @@ func randomFunc(f []TemplateFunc) TemplateFunc {
 }
 
 type ClickbaitGenerator struct {
-	generate  Clickbaiter
+	generate  *Clickbaiter
 	templates []TemplateFunc
 }
 
 func NewGenerator() *ClickbaitGenerator {
 	gen := &ClickbaitGenerator{
-		generate:  *NewClickbaiter(),
+		generate:  NewClickbaiter(),
 		templates: []TemplateFunc{},
 	}
 	gen.AddTemplates([]TemplateFunc{
