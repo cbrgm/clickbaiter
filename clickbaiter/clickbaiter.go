@@ -23,8 +23,8 @@ type Clickbaiter struct {
 	useHashtags bool
 }
 
-func NewClickbaiter() Clickbaiter {
-	return Clickbaiter{
+func NewClickbaiter() *Clickbaiter {
+	return &Clickbaiter{
 		useHashtags: false,
 		nounSubject: "Coworker",
 		nounPerson: []string{
@@ -71,6 +71,9 @@ func NewClickbaiter() Clickbaiter {
 			"Android Developer",
 			"iOS Developer",
 			"Cloud Native",
+			"Game Designer",
+			"Graphic Designer",
+			"Hacker",
 		},
 		goodPredicate: []string{
 			"Opening an Issue",
@@ -99,6 +102,11 @@ func NewClickbaiter() Clickbaiter {
 			"Destroying Test Frameworks",
 			"Deleting User Accounts",
 			"Shattering Unix Permissions",
+			"Escaping Containers",
+			"Playing World of Warcraft",
+			"Cheating in Interviews",
+			"Faking Commits",
+			"Raising Fake Alerts",
 		},
 		verbPast: []string{
 			"Wrote about",
@@ -231,6 +239,14 @@ func NewClickbaiter() Clickbaiter {
 			"Cloud Native",
 			"Proxies",
 			"Reverse Proxies",
+			"PagerDuty",
+			"Alertmanager",
+			"Scrum of Scrums",
+			"Nagios",
+			"Continuous Profiling",
+			"Artificial Intelligence",
+			"Planning Poker",
+			"Event Storming",
 		},
 		reaction: []string{
 			"Blow Your Mind",

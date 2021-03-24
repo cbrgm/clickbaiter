@@ -12,17 +12,14 @@ func randomFunc(f []TemplateFunc) TemplateFunc {
 }
 
 type ClickbaitGenerator struct {
-	words     Clickbaiter
+	generate  Clickbaiter
 	templates []TemplateFunc
-
-	useHashtags bool
 }
 
-func NewGenerator() ClickbaitGenerator {
-	gen := ClickbaitGenerator{
-		words:       NewClickbaiter(),
-		templates:   []TemplateFunc{},
-		useHashtags: false,
+func NewGenerator() *ClickbaitGenerator {
+	gen := &ClickbaitGenerator{
+		generate:  *NewClickbaiter(),
+		templates: []TemplateFunc{},
 	}
 	gen.AddTemplates([]TemplateFunc{
 		func() string {
@@ -75,49 +72,49 @@ func (cbg *ClickbaitGenerator) AddTemplates(se []TemplateFunc) {
 }
 
 func (cbg *ClickbaitGenerator) UseHashtags(b bool) {
-	cbg.words.useHashtags = b
+	cbg.generate.useHashtags = b
 }
 
 func (cbg *ClickbaitGenerator) NounPerson() string {
-	return cbg.words.NounPerson()
+	return cbg.generate.NounPerson()
 }
 
 func (cbg *ClickbaitGenerator) NounPersonType() string {
-	return cbg.words.NounPersonType()
+	return cbg.generate.NounPersonType()
 }
 
 func (cbg *ClickbaitGenerator) GoodPredicate() string {
-	return cbg.words.GoodPredicate()
+	return cbg.generate.GoodPredicate()
 }
 
 func (cbg *ClickbaitGenerator) BadPredicate() string {
-	return cbg.words.BadPredicate()
+	return cbg.generate.BadPredicate()
 }
 
 func (cbg *ClickbaitGenerator) GenericWord() string {
-	return cbg.words.GenericWord()
+	return cbg.generate.GenericWord()
 }
 
 func (cbg *ClickbaitGenerator) VerbPast() string {
-	return cbg.words.VerbPast()
+	return cbg.generate.VerbPast()
 }
 
 func (cbg *ClickbaitGenerator) VerbIng() string {
-	return cbg.words.VerbIng()
+	return cbg.generate.VerbIng()
 }
 
 func (cbg *ClickbaitGenerator) Reaction() string {
-	return cbg.words.Reaction()
+	return cbg.generate.Reaction()
 }
 
 func (cbg *ClickbaitGenerator) Item() string {
-	return cbg.words.Item()
+	return cbg.generate.Item()
 }
 
 func (cbg *ClickbaitGenerator) Number() string {
-	return cbg.words.Number()
+	return cbg.generate.Number()
 }
 
 func (cbg *ClickbaitGenerator) Attention() string {
-	return cbg.words.Attention()
+	return cbg.generate.Attention()
 }
