@@ -16,8 +16,6 @@ func main() {
 
 	b := *hashtagsFlag
 
-	fmt.Println(b)
-
 	cbg := clickbaiter.NewGenerator()
 	cbg.UseHashtags(b)
 
