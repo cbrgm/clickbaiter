@@ -64,7 +64,7 @@ func file(filename string) HandlerFunc {
 	}
 }
 
-func generate(cbg clickbaiter.ClickbaitGenerator) HandlerFunc {
+func generate(cbg *clickbaiter.ClickbaitGenerator) HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) (int, error) {
 		var resp = Response{
 			Headline: cbg.RandomSentence(),
