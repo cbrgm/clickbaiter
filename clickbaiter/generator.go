@@ -13,13 +13,16 @@ func randomFunc(f []TemplateFunc) TemplateFunc {
 
 type ClickbaitGenerator struct {
 	words     Clickbaiter
-	sentences []TemplateFunc
+	templates []TemplateFunc
+
+	useHashtags bool
 }
 
 func NewGenerator() ClickbaitGenerator {
 	gen := ClickbaitGenerator{
-		words:     NewClickbaiter(),
-		sentences: []TemplateFunc{},
+		words:       NewClickbaiter(),
+		templates:   []TemplateFunc{},
+		useHashtags: false,
 	}
 	gen.AddTemplates([]TemplateFunc{
 		func() string {
@@ -57,18 +60,22 @@ func NewGenerator() ClickbaitGenerator {
 }
 
 func (cbg *ClickbaitGenerator) RandomSentence() string {
-	f := randomFunc(cbg.sentences)
+	f := randomFunc(cbg.templates)
 	return f()
 }
 
 func (cbg *ClickbaitGenerator) AddTemplate(s TemplateFunc) {
-	cbg.sentences = append(cbg.sentences, s)
+	cbg.templates = append(cbg.templates, s)
 }
 
 func (cbg *ClickbaitGenerator) AddTemplates(se []TemplateFunc) {
 	for _, s := range se {
-		cbg.sentences = append(cbg.sentences, s)
+		cbg.templates = append(cbg.templates, s)
 	}
+}
+
+func (cbg *ClickbaitGenerator) UseHashtags(b bool) {
+	cbg.words.useHashtags = b
 }
 
 func (cbg *ClickbaitGenerator) NounPerson() string {
@@ -114,5 +121,3 @@ func (cbg *ClickbaitGenerator) Number() string {
 func (cbg *ClickbaitGenerator) Attention() string {
 	return cbg.words.Attention()
 }
-
-

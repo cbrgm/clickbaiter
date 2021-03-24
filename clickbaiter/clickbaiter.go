@@ -1,7 +1,9 @@
 package clickbaiter
 
 import (
+	"fmt"
 	"math/rand"
+	"strings"
 )
 
 type Clickbaiter struct {
@@ -17,10 +19,13 @@ type Clickbaiter struct {
 	reaction       []string
 	number         []string
 	attention      []string
+
+	useHashtags bool
 }
 
 func NewClickbaiter() Clickbaiter {
 	return Clickbaiter{
+		useHashtags: false,
 		nounSubject: "Coworker",
 		nounPerson: []string{
 			"Elon Musk",
@@ -226,7 +231,6 @@ func NewClickbaiter() Clickbaiter {
 			"Cloud Native",
 			"Proxies",
 			"Reverse Proxies",
-
 		},
 		reaction: []string{
 			"Blow Your Mind",
@@ -293,10 +297,16 @@ func NewClickbaiter() Clickbaiter {
 }
 
 func (cb *Clickbaiter) NounPerson() string {
+	if cb.useHashtags {
+		return hashtagify(randomChoice(cb.nounPerson))
+	}
 	return randomChoice(cb.nounPerson)
 }
 
 func (cb *Clickbaiter) NounPersonType() string {
+	if cb.useHashtags {
+		return hashtagify(randomChoice(cb.nounPersonType))
+	}
 	return randomChoice(cb.nounPersonType)
 }
 
@@ -309,10 +319,16 @@ func (cb *Clickbaiter) BadPredicate() string {
 }
 
 func (cb *Clickbaiter) GenericWord() string {
+	if cb.useHashtags {
+		return hashtagify(randomChoice(cb.genericWord))
+	}
 	return randomChoice(cb.genericWord)
 }
 
 func (cb *Clickbaiter) Item() string {
+	if cb.useHashtags {
+		return hashtagify(randomChoice(cb.item))
+	}
 	return randomChoice(cb.item)
 }
 
@@ -336,6 +352,14 @@ func (cb *Clickbaiter) Attention() string {
 	return randomChoice(cb.attention)
 }
 
+func (cb *Clickbaiter) UseHashtags(b bool) {
+	cb.useHashtags = b
+}
+
 func randomChoice(s []string) string {
 	return s[rand.Intn(len(s))]
+}
+
+func hashtagify(s string) string {
+	return fmt.Sprintf("#%s", strings.ReplaceAll(s, " ", ""))
 }
