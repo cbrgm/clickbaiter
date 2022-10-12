@@ -3,13 +3,14 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/alexflint/go-arg"
-	"github.com/cbrgm/clickbaiter/clickbaiter"
-	"github.com/go-chi/chi"
 	"log"
 	"math/rand"
 	"net/http"
 	"time"
+
+	"github.com/alexflint/go-arg"
+	"github.com/cbrgm/clickbaiter/clickbaiter"
+	"github.com/go-chi/chi"
 )
 
 type Config struct {
@@ -65,8 +66,8 @@ func file(filename string) HandlerFunc {
 }
 
 func generate(cbg *clickbaiter.ClickbaitGenerator) HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) (int, error) {
-		var resp = Response{
+	return func(w http.ResponseWriter, _ *http.Request) (int, error) {
+		resp := Response{
 			Headline: cbg.RandomSentence(),
 		}
 		b, err := json.Marshal(resp)
