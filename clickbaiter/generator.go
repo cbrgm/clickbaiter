@@ -23,16 +23,16 @@ func NewGenerator() *ClickbaitGenerator {
 	}
 	gen.AddTemplates([]TemplateFunc{
 		func() string {
-			return fmt.Sprintf("This %s Is %s Using %s", gen.NounPersonType(), gen.BadPredicate(), gen.Item())
+			return fmt.Sprintf("This %s Is %s Using %s %s", gen.NounPersonType(), gen.BadPredicate(), gen.Item(), gen.Emoji())
 		},
 		func() string {
-			return fmt.Sprintf("What This %s %s %s Will %s", gen.NounPersonType(), gen.VerbPast(), gen.Item(), gen.Reaction())
+			return fmt.Sprintf("What This %s %s %s Will %s %s", gen.NounPersonType(), gen.VerbPast(), gen.Item(), gen.Reaction(), gen.Emoji())
 		},
 		func() string {
-			return fmt.Sprintf("%ss hate This: %s %s About %s That Will %s", gen.NounPersonType(), gen.Number(), gen.GenericWord(), gen.Item(), gen.Reaction())
+			return fmt.Sprintf("%ss hate This: %s %s About %s That Will %s %s", gen.NounPersonType(), gen.Number(), gen.GenericWord(), gen.Item(), gen.Reaction(), gen.Emoji())
 		},
 		func() string {
-			return fmt.Sprintf("This %s Wanted to Make a Point About %s and Succeeded!", gen.NounPersonType(), gen.Item())
+			return fmt.Sprintf("This %s Wanted to Make a Point About %s and Succeeded! %s", gen.NounPersonType(), gen.Item(), gen.Emoji())
 		},
 		func() string {
 			return fmt.Sprintf("%ss Are Mad! %ss Are %s Using %s", gen.NounPersonType(), gen.NounPersonType(), gen.BadPredicate(), gen.Item())
@@ -47,7 +47,7 @@ func NewGenerator() *ClickbaitGenerator {
 			return fmt.Sprintf("Why %s Becomes Important! What %s Is Talking About With %ss Will %s", gen.Item(), gen.NounPerson(), gen.NounPersonType(), gen.Reaction())
 		},
 		func() string {
-			return fmt.Sprintf("%s: %ss Are %s %s. What Happened Next Will %s", gen.Attention(), gen.NounPersonType(), gen.VerbIng(), gen.Item(), gen.Reaction())
+			return fmt.Sprintf("%s: %ss Are %s %s. %s What Happened Next Will %s", gen.Attention(), gen.NounPersonType(), gen.VerbIng(), gen.Item(), gen.Emoji(), gen.Reaction())
 		},
 		func() string {
 			return fmt.Sprintf("%s: %s As A Service is On The Rise! Read On and It Will %s", gen.Attention(), gen.Item(), gen.Reaction())
@@ -66,13 +66,15 @@ func (cbg *ClickbaitGenerator) AddTemplate(s TemplateFunc) {
 }
 
 func (cbg *ClickbaitGenerator) AddTemplates(se []TemplateFunc) {
-	for _, s := range se {
-		cbg.templates = append(cbg.templates, s)
-	}
+	cbg.templates = append(cbg.templates, se...)
 }
 
 func (cbg *ClickbaitGenerator) UseHashtags(b bool) {
 	cbg.generate.useHashtags = b
+}
+
+func (cbg *ClickbaitGenerator) Emoji() string {
+	return cbg.generate.Emoji()
 }
 
 func (cbg *ClickbaitGenerator) NounPerson() string {

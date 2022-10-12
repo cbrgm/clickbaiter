@@ -19,6 +19,7 @@ type Clickbaiter struct {
 	reaction       []string
 	number         []string
 	attention      []string
+	emoji          []string
 
 	useHashtags bool
 }
@@ -31,7 +32,6 @@ func NewClickbaiter() *Clickbaiter {
 			"Elon Musk",
 			"Bill Gates",
 			"Angela Merkel",
-			"Putin",
 			"Trump",
 			"Bob Ross",
 			"Joe Biden",
@@ -86,6 +86,13 @@ func NewClickbaiter() *Clickbaiter {
 			"Game Designer",
 			"Graphic Designer",
 			"Hacker",
+			"Compliance Officer",
+			"QA",
+			"Scientist",
+			"Hacker",
+			"Embedded Engineer",
+			"Staff Engineer",
+			"Principal Engineer",
 		},
 		goodPredicate: []string{
 			"Opening an Issue",
@@ -166,6 +173,7 @@ func NewClickbaiter() *Clickbaiter {
 			"Shocking News",
 			"Tricks",
 			"Hints",
+			"Facts",
 		},
 		item: []string{
 			"Keyboards",
@@ -257,6 +265,12 @@ func NewClickbaiter() *Clickbaiter {
 			"Event Storming",
 			"Extreme Programming",
 			"Test Driven Development",
+			"Stream-aligned Teams",
+			"Nvim",
+			"Emac",
+			"eBPF",
+			"Thanos",
+			"Steam",
 		},
 		reaction: []string{
 			"Blow Your Mind",
@@ -319,6 +333,31 @@ func NewClickbaiter() *Clickbaiter {
 			"Everyone talks about it",
 			"Trending",
 		},
+		emoji: []string{
+			"😀",
+			"😃",
+			"😄",
+			"😁",
+			"😉",
+			"😊",
+			"😇",
+			"😋",
+			"🤑",
+			"🫢",
+			"🤫",
+			"😏",
+			"😬",
+			"🤯",
+			"🥳",
+			"🤓",
+			"😱",
+			"👽",
+			"🤖",
+			"🙀",
+			"🙈",
+			"🙉",
+			"🙊",
+		},
 	}
 }
 
@@ -376,6 +415,10 @@ func (cb *Clickbaiter) Number() string {
 
 func (cb *Clickbaiter) Attention() string {
 	return randomChoice(cb.attention)
+}
+
+func (cb *Clickbaiter) Emoji() string {
+	return randomChoice(cb.emoji)
 }
 
 func (cb *Clickbaiter) UseHashtags(b bool) {

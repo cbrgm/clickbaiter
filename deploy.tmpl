@@ -5,7 +5,7 @@ metadata:
   namespace: production
   labels:
     app: clickbaiter
-    commit: {{ .DroneCommit }}
+    commit: "asd"
 spec:
   selector:
     matchLabels:
@@ -29,7 +29,7 @@ spec:
             - name: HTTP_ADDR
               value: ':8080'
             - name: COMMIT_HASH
-              value: {{ .DroneCommit }}
+              value: "asd"
           ports:
             - containerPort: 8080
           resources:
